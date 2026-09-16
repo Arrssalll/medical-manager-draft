@@ -1,0 +1,1139 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found]){display:none!important}</style></head><body>
+<title>HMS Medical Manager Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Fira+Code:wght@400;500&display=swap">
+
+<style>
+/* ─── Tokens ─────────────────────────────────────────────── */
+:root {
+  --bg:        #F2F6FB;
+  --surface:   #FFFFFF;
+  --surface2:  #F7FAFF;
+  --border:    #DBEAFE;
+  --border2:   #CBD5E1;
+  --primary:   #1B4F8A;
+  --primary-l: #EEF4FF;
+  --accent:    #0EA5E9;
+  --txt:       #1A2332;
+  --muted:     #546E89;
+  --mine:      #059669;
+  --mine-bg:   #ECFDF5;
+  --mine-b:    #A7F3D0;
+  --shared:    #D97706;
+  --shared-bg: #FFFBEB;
+  --shared-b:  #FDE68A;
+  --team:      #7C3AED;
+  --team-bg:   #F5F3FF;
+  --team-b:    #DDD6FE;
+  --danger:    #DC2626;
+  --warn-bg:   #FEF2F2;
+  --warn-b:    #FECACA;
+  --note-bg:   #FFFBEB;
+  --note-b:    #FDE68A;
+  --code-bg:   #EFF6FF;
+  --code-txt:  #1B4F8A;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:        #0D1B2A;
+    --surface:   #132338;
+    --surface2:  #0D1B2A;
+    --border:    #1E3A5F;
+    --border2:   #2A4A6B;
+    --primary:   #60A5FA;
+    --primary-l: #1E2D40;
+    --accent:    #38BDF8;
+    --txt:       #E2EAF4;
+    --muted:     #7C95B0;
+    --mine:      #34D399;
+    --mine-bg:   #0D2A1E;
+    --mine-b:    #065F46;
+    --shared:    #FBBF24;
+    --shared-bg: #292000;
+    --shared-b:  #92400E;
+    --team:      #A78BFA;
+    --team-bg:   #1E1030;
+    --team-b:    #4C1D95;
+    --danger:    #F87171;
+    --warn-bg:   #2A0D0D;
+    --warn-b:    #7F1D1D;
+    --note-bg:   #252000;
+    --note-b:    #78350F;
+    --code-bg:   #0F2340;
+    --code-txt:  #93C5FD;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg:        #0D1B2A;
+  --surface:   #132338;
+  --surface2:  #0D1B2A;
+  --border:    #1E3A5F;
+  --border2:   #2A4A6B;
+  --primary:   #60A5FA;
+  --primary-l: #1E2D40;
+  --accent:    #38BDF8;
+  --txt:       #E2EAF4;
+  --muted:     #7C95B0;
+  --mine:      #34D399;
+  --mine-bg:   #0D2A1E;
+  --mine-b:    #065F46;
+  --shared:    #FBBF24;
+  --shared-bg: #292000;
+  --shared-b:  #92400E;
+  --team:      #A78BFA;
+  --team-bg:   #1E1030;
+  --team-b:    #4C1D95;
+  --danger:    #F87171;
+  --warn-bg:   #2A0D0D;
+  --warn-b:    #7F1D1D;
+  --note-bg:   #252000;
+  --note-b:    #78350F;
+  --code-bg:   #0F2340;
+  --code-txt:  #93C5FD;
+}
+
+/* ─── Base ───────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--txt);
+  background: var(--bg);
+  padding: 32px 24px 64px;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+/* ─── Typography ─────────────────────────────────────────── */
+h1, h2, h3, h4, h5 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  text-wrap: balance;
+  line-height: 1.25;
+}
+
+h1 { font-size: 2rem; font-weight: 800; color: var(--primary); }
+h2 { font-size: 1.25rem; font-weight: 700; color: var(--primary); }
+h3 { font-size: 1rem; font-weight: 700; color: var(--txt); margin-bottom: 10px; }
+h4 { font-size: 0.875rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 8px; }
+
+p { margin-bottom: 12px; max-width: 65ch; }
+p:last-child { margin-bottom: 0; }
+
+code, .mono {
+  font-family: 'Fira Code', 'Courier New', monospace;
+  font-size: 0.82em;
+  background: var(--code-bg);
+  color: var(--code-txt);
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+
+/* ─── Cover ──────────────────────────────────────────────── */
+.cover {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 36px 40px 32px;
+  margin-bottom: 36px;
+  border-top: 5px solid var(--primary);
+}
+.cover-eyebrow {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+.cover h1 { margin-bottom: 8px; }
+.cover-sub {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin-bottom: 22px;
+}
+.cover-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+.cover-meta span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.cover-meta strong { color: var(--txt); }
+
+/* ─── Legend ─────────────────────────────────────────────── */
+.legend {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 14px 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 36px;
+  font-size: 0.82rem;
+}
+.legend-item { display: flex; align-items: center; gap: 7px; }
+
+/* ─── Section cards ──────────────────────────────────────── */
+.section {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  border-left: 4px solid var(--primary);
+  padding: 28px 32px;
+  margin-bottom: 24px;
+}
+.section-header {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+.section-num {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--primary);
+  background: var(--primary-l);
+  padding: 2px 9px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+/* ─── Badges ─────────────────────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  padding: 2px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+.badge-mine    { background: var(--mine-bg);   color: var(--mine);   border: 1px solid var(--mine-b); }
+.badge-shared  { background: var(--shared-bg); color: var(--shared); border: 1px solid var(--shared-b); }
+.badge-team    { background: var(--team-bg);   color: var(--team);   border: 1px solid var(--team-b); }
+
+/* ─── File group headers ─────────────────────────────────── */
+.group-label {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .09em;
+  color: var(--muted);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 6px;
+  margin: 20px 0 12px;
+}
+.group-label:first-of-type { margin-top: 0; }
+
+/* ─── File rows ──────────────────────────────────────────── */
+.file-row {
+  display: grid;
+  grid-template-columns: 210px 1fr;
+  gap: 12px 20px;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--border2);
+  align-items: start;
+  font-size: 0.88rem;
+}
+.file-row:last-child { border-bottom: none; }
+.file-name {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.78rem;
+  color: var(--code-txt);
+  background: var(--code-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  word-break: break-all;
+}
+.file-desc { color: var(--txt); }
+.file-sub  { color: var(--muted); font-size: 0.82rem; margin-top: 2px; }
+
+/* ─── Tables ─────────────────────────────────────────────── */
+.tbl-wrap { overflow-x: auto; margin: 4px 0 12px; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+th {
+  background: var(--primary-l);
+  color: var(--primary);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  padding: 8px 12px;
+  text-align: left;
+}
+td { padding: 8px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: var(--surface2); }
+
+/* ─── Flow diagram ───────────────────────────────────────── */
+.flow-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  margin-bottom: 18px;
+}
+.flow-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 16px;
+}
+.flow-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--primary);
+  flex-shrink: 0;
+  margin-top: 6px;
+}
+.flow-line {
+  width: 2px;
+  flex: 1;
+  background: var(--border);
+  min-height: 28px;
+}
+.flow-content { flex: 1; padding-bottom: 4px; }
+.flow-arrow {
+  font-size: 0.75rem;
+  color: var(--muted);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin: 3px 0 5px;
+}
+
+/* ─── Steps list ─────────────────────────────────────────── */
+.steps { counter-reset: step; list-style: none; }
+.steps li {
+  counter-increment: step;
+  display: flex;
+  gap: 14px;
+  margin-bottom: 12px;
+  align-items: flex-start;
+  font-size: 0.9rem;
+}
+.steps li::before {
+  content: counter(step);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 800;
+  font-size: 0.75rem;
+  color: var(--surface);
+  background: var(--primary);
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.steps li b { color: var(--primary); }
+
+/* ─── Checklist ──────────────────────────────────────────── */
+.checklist { list-style: none; }
+.checklist li {
+  display: flex;
+  gap: 10px;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.88rem;
+  align-items: flex-start;
+}
+.checklist li:last-child { border-bottom: none; }
+.check-box {
+  width: 18px; height: 18px;
+  border: 2px solid var(--border2);
+  border-radius: 4px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.check-label { flex: 1; }
+.check-sub { color: var(--muted); font-size: 0.8rem; }
+
+/* ─── Credential cards ───────────────────────────────────── */
+.cred-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 12px; }
+.cred-card {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 16px;
+  font-size: 0.84rem;
+}
+.cred-role {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  margin-bottom: 6px;
+}
+.cred-line { display: flex; gap: 8px; margin-bottom: 2px; }
+.cred-lbl { color: var(--muted); min-width: 70px; }
+.cred-val { font-family: 'Fira Code', monospace; font-size: 0.8em; color: var(--code-txt); background: var(--code-bg); padding: 0 5px; border-radius: 3px; }
+
+/* ─── Callouts ───────────────────────────────────────────── */
+.callout {
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin: 14px 0;
+  font-size: 0.88rem;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.callout-warn {
+  background: var(--warn-bg);
+  border: 1px solid var(--warn-b);
+  color: var(--danger);
+}
+.callout-note {
+  background: var(--note-bg);
+  border: 1px solid var(--note-b);
+  color: var(--txt);
+}
+.callout-icon { font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
+.callout-body { flex: 1; }
+.callout-body b { display: block; margin-bottom: 4px; }
+
+/* ─── Quick ref ──────────────────────────────────────────── */
+.qr-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.qr-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 18px 20px;
+}
+.qr-card h4 { margin-bottom: 10px; }
+.qr-list { list-style: none; }
+.qr-list li {
+  font-size: 0.82rem;
+  padding: 3px 0;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+.qr-list li:last-child { border-bottom: none; }
+.qr-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--primary); flex-shrink: 0; margin-bottom: 2px; }
+
+/* ─── Data table cells ───────────────────────────────────── */
+.status-active  { color: var(--mine); font-weight: 600; }
+.status-booked  { color: var(--shared); font-weight: 600; }
+.status-unavail { color: var(--muted); }
+.status-unpaid  { color: var(--danger); font-weight: 600; }
+
+/* ─── Page separator ─────────────────────────────────────── */
+.page-break { border: none; border-top: 2px dashed var(--border); margin: 36px 0; }
+
+/* ─── Print ──────────────────────────────────────────────── */
+@media print {
+  body { background: #fff; padding: 0; max-width: 100%; color: #000; font-size: 12px; }
+  .cover, .section, .qr-card, .cred-card { border: 1px solid #ccc !important; border-left: 3px solid #1B4F8A !important; border-radius: 0 !important; break-inside: avoid; }
+  .cover { border-top: 3px solid #1B4F8A !important; }
+  .badge-mine    { background: #d1fae5 !important; color: #059669 !important; }
+  .badge-shared  { background: #fef3c7 !important; color: #d97706 !important; }
+  .badge-team    { background: #ede9fe !important; color: #7c3aed !important; }
+  th { background: #f0f5ff !important; }
+  .qr-grid { break-before: page; }
+  .page-break { display: none; }
+  a { text-decoration: none; color: #000; }
+}
+
+@media (max-width: 640px) {
+  .file-row { grid-template-columns: 1fr; }
+  .qr-grid { grid-template-columns: 1fr; }
+  .section { padding: 20px 18px; }
+  .cover { padding: 24px 20px; }
+}
+</style>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  COVER                                                   -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="cover">
+  <div class="cover-eyebrow">OODJ Group Project — Medical Manager Module</div>
+  <h1>HMS Presentation Guide</h1>
+  <p class="cover-sub">APU Medical Centre Hospital Management System · Reference for demo &amp; presentation</p>
+  <div class="cover-meta">
+    <span><strong>Role:</strong> Medical Manager</span>
+    <span><strong>Login:</strong> <code>farahaziz</code> / <code>manager123</code></span>
+    <span><strong>Main class:</strong> <code>main.Main</code></span>
+    <span><strong>Build:</strong> Apache Ant · Java 26</span>
+    <span><strong>JAR:</strong> <code>dist/HMS.jar</code></span>
+  </div>
+</div>
+
+<!-- Legend -->
+<div class="legend">
+  <strong style="font-family:'Plus Jakarta Sans',sans-serif;font-size:0.8rem;">Ownership:</strong>
+  <div class="legend-item"><span class="badge badge-mine">My Work</span> Files authored &amp; owned by me</div>
+  <div class="legend-item"><span class="badge badge-shared">Shared</span> Team infrastructure I use but do not own</div>
+  <div class="legend-item"><span class="badge badge-team">Teammate</span> Other modules — not my code</div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  SECTION 1 — MY FILES                                   -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">Section 1</span>
+    <h2>My Medical Manager Files <span class="badge badge-mine" style="margin-left:8px;">My Work — 15 Java files + 3 data files</span></h2>
+  </div>
+
+  <div class="group-label">GUI — package <code>gui.manager</code></div>
+  <div class="file-row">
+    <div class="file-name">ManagerDashboard.java</div>
+    <div><div class="file-desc">The main window that opens after a Medical Manager logs in.</div><div class="file-sub">Shows a welcome bar with the manager's username, five tabs (My Profile, Departments, Doctor Schedules, Assessment Types, Reports), and a Logout button.</div></div>
+  </div>
+  <div class="file-row">
+    <div class="file-name">ProfilePanel.java</div>
+    <div><div class="file-desc">Lets the signed-in manager view and update their own display name.</div><div class="file-sub">Loads the manager record from medicalManagers.txt using MedicalManagerService. Username, status, and password are read-only here — those are Admin-owned.</div></div>
+  </div>
+  <div class="file-row">
+    <div class="file-name">DepartmentPanel.java</div>
+    <div><div class="file-desc">Full create/update screen for hospital departments.</div><div class="file-sub">Table shows all departments; clicking a row loads it into the form. Supports Add, Update (status to ACTIVE/INACTIVE), Find by ID, Refresh, Clear.</div></div>
+  </div>
+  <div class="file-row">
+    <div class="file-name">DoctorSchedulePanel.java</div>
+    <div><div class="file-desc">Build and manage doctors' working schedules.</div><div class="file-sub">Add new slots (date + start/end time), update existing ones, filter by doctor ID or show only AVAILABLE slots. Blocks editing of BOOKED slots.</div></div>
+  </div>
+  <div class="file-row">
+    <div class="file-name">AssessmentTypePanel.java</div>
+    <div><div class="file-desc">Manage the list of assessment/check-up types.</div><div class="file-sub">Add new types, update description or status, find by ID. Duplicate names are rejected.</div></div>
+  </div>
+  <div class="file-row">
+    <div class="file-name">ReportsPanel.java</div>
+    <div><div class="file-desc">Two read-only reports: Hospital Metrics and Revenue Summary.</div><div class="file-sub">Metrics shows department/doctor/patient/schedule counts. Revenue shows billing totals from the Admin's bills.txt. A Refresh button reloads both.</div></div>
+  </div>
+
+  <div class="group-label">Models — package <code>model.manager</code></div>
+  <div class="file-row">
+    <div class="file-name">Department.java</div>
+    <div><div class="file-desc">Holds one department record (ID, name, specialty, status).</div><div class="file-sub">Validates that status is ACTIVE or INACTIVE. Converts to/from the pipe-delimited line format used in departments.txt.</div></div>
+  </div>
+  <div class="file-row">
+    <div class="file-name">DoctorSchedule.java</div>
+    <div><div class="file-desc">Holds one schedule slot (ID, doctorID, date, start, end, status).</div><div class="file-sub">Validates date as yyyy-MM-dd, times as HH:mm, and that end time is strictly after start time. Status: AVAILABLE / BOOKED / UNAVAILABLE.</div></div>
+  </div>
+  <div class="file-row">
+    <div class="file-name">AssessmentType.java</div>
+    <div><div class="file-desc">Holds one assessment type (ID, name, description, status).</div><div class="file-sub">Validates ACTIVE / INACTIVE status. Converts to/from the assessmentTypes.txt line format.</div></div>
+  </div>
+  <div class="file-row">
+    <div class="file-name">HospitalMetrics.java</div>
+    <div><div class="file-desc">Data carrier for the Hospital Metrics report.</div><div class="file-sub">Stores counts for departments, assessment types, schedule slots, doctors, patients. Also tracks which data sources are missing (modules not yet built by teammates).</div></div>
+  </div>
+  <div class="file-row">
+    <div class="file-name">RevenueSummary.java</div>
+    <div><div class="file-desc">Data carrier for the Revenue Summary report.</div><div class="file-sub">Stores total/paid/pending/unpaid bill counts and amounts. Computes outstanding = totalBilled − totalCollected.</div></div>
+  </div>
+
+  <div class="group-label">Services — package <code>service.manager</code></div>
+  <div class="file-row">
+    <div class="file-name">DepartmentService.java</div>
+    <div><div class="file-desc">Business logic for managing departments.</div><div class="file-sub">Reads/writes departments.txt via FileManager. Generates DEP-prefixed IDs via IDGenerator. Enforces unique names, non-empty fields, valid status. Retires (INACTIVE) instead of deleting.</div></div>
+  </div>
+  <div class="file-row">
+    <div class="file-name">AssessmentTypeService.java</div>
+    <div><div class="file-desc">Business logic for managing assessment types.</div><div class="file-sub">Same pattern as DepartmentService but for assessmentTypes.txt with AT-prefixed IDs.</div></div>
+  </div>
+  <div class="file-row">
+    <div class="file-name">DoctorScheduleService.java</div>
+    <div><div class="file-desc">Business logic for managing schedule slots.</div><div class="file-sub">Verifies that the doctor ID exists in doctors.txt (via DoctorService). Detects time overlaps. Generates SCH-prefixed IDs. Reads/writes doctorSchedules.txt.</div></div>
+  </div>
+  <div class="file-row">
+    <div class="file-name">ReportService.java</div>
+    <div><div class="file-desc">Produces the two analytical reports. Read-only — never writes any file.</div><div class="file-sub">Calls DepartmentService, AssessmentTypeService, DoctorScheduleService, DoctorService, UserManagementService, BillService. Reports missing data sources honestly instead of showing zeroes.</div></div>
+  </div>
+
+  <div class="group-label">Data files — <code>data/</code> folder (owned by my module)</div>
+  <div class="file-row">
+    <div class="file-name">departments.txt</div>
+    <div><div class="file-desc">Stores all hospital department records.</div><div class="file-sub">Format: <code>departmentID|departmentName|specialty|status</code>. Currently has 3 records (DEP001–DEP003).</div></div>
+  </div>
+  <div class="file-row">
+    <div class="file-name">doctorSchedules.txt</div>
+    <div><div class="file-desc">Stores all doctor schedule slots.</div><div class="file-sub">Format: <code>scheduleID|doctorID|date|startTime|endTime|status</code>. Currently has 4 records (SCH001–SCH004).</div></div>
+  </div>
+  <div class="file-row">
+    <div class="file-name">assessmentTypes.txt</div>
+    <div><div class="file-desc">Stores all assessment/check-up type records.</div><div class="file-sub">Format: <code>assessmentTypeID|assessmentName|description|status</code>. Currently has 3 records (AT001–AT003).</div></div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  SECTION 2 — SHARED FILES                               -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">Section 2</span>
+    <h2>Shared Files I Use <span class="badge badge-shared" style="margin-left:8px;">Not my owned code — I import these</span></h2>
+  </div>
+
+  <div class="callout callout-note">
+    <div class="callout-icon">ℹ️</div>
+    <div class="callout-body"><b>Important for your viva/presentation</b>These files were written by your teammates or are team infrastructure. You USE them but you should NOT claim them as your individual work. You can explain <em>why</em> your module needs each one.</div>
+  </div>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>File</th><th>Package</th><th>Why my module uses it</th></tr></thead>
+      <tbody>
+        <tr><td><code>User.java</code></td><td><code>model</code></td><td><code>MedicalManager extends User</code> — abstract base class with userId, username, password, role, status. My ProfilePanel works with MedicalManager objects which ARE Users.</td></tr>
+        <tr><td><code>MedicalManager.java</code></td><td><code>model</code></td><td>My role's domain object. Adds the <code>name</code> field and implements <code>getDashboardTitle()</code>. Used by ProfilePanel to display/update the manager's profile.</td></tr>
+        <tr><td><code>Doctor.java</code></td><td><code>model</code></td><td>Used by ReportService to count doctors and check if they are assigned to a manager.</td></tr>
+        <tr><td><code>Bill.java</code></td><td><code>model</code></td><td>Used by ReportService to compute revenue totals from bills.txt.</td></tr>
+        <tr><td><code>MedicalManagerService.java</code></td><td><code>service</code></td><td>ProfilePanel calls <code>getAll()</code> and <code>update()</code> to load and save the manager's own record from medicalManagers.txt.</td></tr>
+        <tr><td><code>DoctorService.java</code></td><td><code>service</code></td><td>DoctorScheduleService calls <code>getById()</code> to verify a doctor exists before creating a schedule slot. ReportService calls <code>getAll()</code> to count doctors.</td></tr>
+        <tr><td><code>BillService.java</code></td><td><code>service</code></td><td>ReportService calls <code>getAll()</code> to read all bills and compute revenue totals. Never writes to bills.txt.</td></tr>
+        <tr><td><code>AuthenticationService.java</code></td><td><code>service</code></td><td>Used by LoginFrame (not by my code directly). Validates login credentials. Produces the AuthResult that routes the user to ManagerDashboard.</td></tr>
+        <tr><td><code>UserManagementService.java</code></td><td><code>service</code></td><td>ReportService calls <code>getAll()</code> and filters by role = PATIENT to count registered patients for the Hospital Metrics report.</td></tr>
+        <tr><td><code>CrudService.java</code></td><td><code>service</code></td><td>Generic CRUD interface implemented by the team's services. My services do not implement it (departments/types use INACTIVE instead of delete), but I reference it indirectly.</td></tr>
+        <tr><td><code>FileManager.java</code></td><td><code>util</code></td><td>All file reading/writing in my services goes through this. <code>readLines()</code>, <code>writeLines()</code>, <code>appendLine()</code>. No direct file I/O in my code.</td></tr>
+        <tr><td><code>IDGenerator.java</code></td><td><code>util</code></td><td>Generates the next DEP, AT, and SCH identifiers by scanning existing records in each file. Ensures IDs never repeat.</td></tr>
+        <tr><td><code>ValidationUtil.java</code></td><td><code>util</code></td><td>My services call <code>isNotEmpty()</code> and <code>isValidStatus()</code> to validate user input before writing.</td></tr>
+        <tr><td><code>AuditLogger.java</code></td><td><code>util</code></td><td>Singleton logger. Writes audit entries to auditLog.txt. Available to all modules but not directly invoked in my service code.</td></tr>
+        <tr><td><code>LoginFrame.java</code></td><td><code>gui</code></td><td>Team's login screen. I added 2 lines to wire the MEDICAL_MANAGER route: <code>dispose(); new ManagerDashboard(result.username).setVisible(true);</code>. The rest is unchanged.</td></tr>
+        <tr><td><code>Main.java</code></td><td><code>main</code></td><td>Team entry point. <code>SwingUtilities.invokeLater(() → new LoginFrame().setVisible(true));</code>. Untouched by me.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  SECTION 3 — TEAMMATE FILES                             -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">Section 3</span>
+    <h2>Teammate-Owned Files <span class="badge badge-team" style="margin-left:8px;">Not my code — do not claim these</span></h2>
+  </div>
+
+  <div class="group-label">Administrative Staff GUI — <code>gui.admin.*</code> (7 files)</div>
+  <p style="font-size:0.88rem;color:var(--muted);margin-bottom:10px;">These files are entirely Sargun's module. I did not write or modify them.</p>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>File</th><th>Purpose</th></tr></thead>
+      <tbody>
+        <tr><td><code>AdminDashboard.java</code></td><td>Main window for Admin Staff — launched after admin1 login</td></tr>
+        <tr><td><code>UserManagementPanel.java</code></td><td>Create/manage all user accounts (doctors, managers, patients)</td></tr>
+        <tr><td><code>DoctorAssignmentPanel.java</code></td><td>Assign doctors to manager accounts</td></tr>
+        <tr><td><code>BillOverviewPanel.java</code></td><td>View and manage patient bills</td></tr>
+        <tr><td><code>AssetManagementPanel.java</code></td><td>Manage hospital assets (wards, labs, clinics)</td></tr>
+        <tr><td><code>ConsultationRatePanel.java</code></td><td>Manage consultation rate cards</td></tr>
+        <tr><td><code>InsuranceNetworkPanel.java</code></td><td>Manage insurance provider coverage rates</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="group-label">Teammate Models — <code>model.*</code></div>
+  <p style="font-size:0.88rem;color:var(--muted);margin-bottom:8px;"><code>AdminStaff</code>, <code>Bill</code>, <code>ConsultationRate</code>, <code>Doctor</code>, <code>HospitalAsset</code>, <code>InsuranceNetwork</code>, <code>Patient</code></p>
+
+  <div class="group-label">Teammate Services — <code>service.*</code></div>
+  <p style="font-size:0.88rem;color:var(--muted);margin-bottom:8px;"><code>AssetService</code>, <code>BillService</code>, <code>ConsultationRateService</code>, <code>DoctorService</code>, <code>InsuranceNetworkService</code>, <code>MedicalManagerService</code>, <code>UserManagementService</code></p>
+
+  <div class="group-label">Teammate Data Files — <code>data/</code></div>
+  <p style="font-size:0.88rem;color:var(--muted);"><code>users.txt</code>, <code>doctors.txt</code>, <code>medicalManagers.txt</code>, <code>bills.txt</code>, <code>hospitalAssets.txt</code>, <code>consultationRates.txt</code>, <code>insuranceNetworks.txt</code>, <code>auditLog.txt</code></p>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  SECTION 4 — HOW MY MODULE CONNECTS                     -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">Section 4</span>
+    <h2>How My Module Connects to the Rest of HMS</h2>
+  </div>
+
+  <h3>Key integration flows</h3>
+
+  <div class="flow-item">
+    <div class="flow-col"><div class="flow-dot"></div><div class="flow-line"></div></div>
+    <div class="flow-content">
+      <strong>Revenue report chain</strong><br>
+      <span class="badge badge-mine">My</span> <code>ReportsPanel</code>
+      <div class="flow-arrow">→ calls</div>
+      <span class="badge badge-mine">My</span> <code>ReportService.getRevenueSummary()</code>
+      <div class="flow-arrow">→ calls</div>
+      <span class="badge badge-shared">Shared</span> <code>BillService.getAll()</code> → reads <code>bills.txt</code> (teammate's file, read-only)
+      <div class="flow-arrow">→ returns</div>
+      <span class="badge badge-mine">My</span> <code>RevenueSummary</code> object displayed in the Revenue tab
+    </div>
+  </div>
+
+  <div class="flow-item">
+    <div class="flow-col"><div class="flow-dot"></div><div class="flow-line"></div></div>
+    <div class="flow-content">
+      <strong>Schedule validation chain</strong><br>
+      <span class="badge badge-mine">My</span> <code>DoctorSchedulePanel</code> — user types a Doctor ID
+      <div class="flow-arrow">→ calls</div>
+      <span class="badge badge-mine">My</span> <code>DoctorScheduleService.addSchedule()</code>
+      <div class="flow-arrow">→ calls</div>
+      <span class="badge badge-shared">Shared</span> <code>DoctorService.getById()</code> → confirms doctor exists in <code>doctors.txt</code>
+      <div class="flow-arrow">→ if valid</div>
+      writes new slot to <span class="badge badge-mine">My</span> <code>doctorSchedules.txt</code>
+    </div>
+  </div>
+
+  <div class="flow-item">
+    <div class="flow-col"><div class="flow-dot"></div><div class="flow-line"></div></div>
+    <div class="flow-content">
+      <strong>Profile edit chain</strong><br>
+      <span class="badge badge-mine">My</span> <code>ProfilePanel</code> — shows manager's name
+      <div class="flow-arrow">→ calls</div>
+      <span class="badge badge-shared">Shared</span> <code>MedicalManagerService.getAll()</code> → finds record in <code>medicalManagers.txt</code>
+      <div class="flow-arrow">→ on save</div>
+      <span class="badge badge-shared">Shared</span> <code>MedicalManagerService.update()</code> → rewrites medicalManagers.txt (does NOT touch users.txt)
+    </div>
+  </div>
+
+  <div class="flow-item">
+    <div class="flow-col"><div class="flow-dot"></div></div>
+    <div class="flow-content">
+      <strong>Login routing</strong><br>
+      <span class="badge badge-shared">Shared</span> <code>LoginFrame</code> → <span class="badge badge-shared">Shared</span> <code>AuthenticationService.authenticate()</code>
+      <div class="flow-arrow">→ if role = MEDICAL_MANAGER</div>
+      opens <span class="badge badge-mine">My</span> <code>ManagerDashboard</code> with the username passed in
+    </div>
+  </div>
+
+  <div class="callout callout-note" style="margin-top:20px;">
+    <div class="callout-icon">💡</div>
+    <div class="callout-body">
+      <b>The key distinction</b>
+      <strong>Owned by me</strong> — I wrote it, I own the data file, I'm responsible for it during the viva.<br>
+      <strong>Shared / used by me</strong> — I call the method but someone else wrote the class. I should explain <em>why</em> I use it, not claim authorship.<br>
+      <strong>Teammate's</strong> — I don't touch it at all. I can explain what it does at a high level if asked.
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  SECTION 5 — HOW TO RUN                                 -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">Section 5</span>
+    <h2>How to Run the HMS in Apache NetBeans</h2>
+  </div>
+
+  <h3>Opening the project</h3>
+  <ol class="steps">
+    <li>Open <b>Apache NetBeans</b>.</li>
+    <li>Go to <b>File → Open Project</b>.</li>
+    <li>Navigate to <b><code>C:\Users\ahmad\OneDrive\Documents\NetBeansProjects\HMS</code></b> and click <b>Open Project</b>.</li>
+    <li>The project will appear in the Projects panel on the left as <b>HMS</b>.</li>
+  </ol>
+
+  <h3 style="margin-top:20px;">Checking the Java platform</h3>
+  <ol class="steps">
+    <li>Right-click the <b>HMS</b> project → <b>Properties</b>.</li>
+    <li>Under <b>Libraries → Java Platform</b>: confirm it shows a JDK. The project is configured for <b>Java 26</b> (source compatibility). If NetBeans shows a warning about the platform, select the bundled NetBeans JDK from the dropdown.</li>
+    <li>Click <b>OK</b>.</li>
+  </ol>
+
+  <h3 style="margin-top:20px;">Running the application</h3>
+  <ol class="steps">
+    <li>Press <b>F6</b>, or click the green <b>Run Project ▶</b> button in the toolbar.</li>
+    <li>NetBeans will compile all 46 source files and launch the application.</li>
+    <li>The <b>APU Medical Centre HMS — Login</b> window appears.</li>
+  </ol>
+
+  <div class="callout callout-note">
+    <div class="callout-icon">ℹ️</div>
+    <div class="callout-body"><b>If NetBeans asks which main class to use</b><br>Select <code>main.Main</code>. This is already set in <code>nbproject/project.properties</code> as <code>main.class=main.Main</code>, so it should never ask.</div>
+  </div>
+
+  <h3 style="margin-top:20px;">Stopping and re-running</h3>
+  <ol class="steps">
+    <li>Close the HMS window (the X button or Logout → then close the Login window) to stop the app naturally.</li>
+    <li>To re-run, press <b>F6</b> again. NetBeans will only recompile if files have changed.</li>
+    <li>If you need a clean rebuild: <b>Run → Clean and Build Project</b> (or Shift+F11), then F6.</li>
+  </ol>
+
+  <h3 style="margin-top:20px;">Running from the built JAR (alternative)</h3>
+  <p>A pre-built JAR already exists at <code>dist/HMS.jar</code>. You can run it from a terminal in the project folder:</p>
+  <div style="background:var(--code-bg);border-radius:6px;padding:12px 16px;font-family:'Fira Code',monospace;font-size:0.82rem;color:var(--code-txt);margin:8px 0;">
+    "C:\Program Files\Apache NetBeans\jdk\bin\java.exe" -jar dist\HMS.jar
+  </div>
+  <p style="font-size:0.85rem;color:var(--muted);">The working directory must be the project root so that the <code>data/</code> folder is found at the expected relative path.</p>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  SECTION 6 — HOW TO USE                                 -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">Section 6</span>
+    <h2>How to Use the HMS — User Flow</h2>
+  </div>
+
+  <h3>Login</h3>
+  <ol class="steps">
+    <li>Enter <b>Username:</b> <code>farahaziz</code></li>
+    <li>Enter <b>Password:</b> <code>manager123</code></li>
+    <li>Click <b>Login</b> (or press Enter in the password field).</li>
+    <li>The <b>Medical Manager Dashboard</b> opens with 5 tabs.</li>
+  </ol>
+
+  <h3 style="margin-top:20px;">My Profile tab</h3>
+  <ol class="steps">
+    <li>Click the <b>My Profile</b> tab (shown by default on login).</li>
+    <li>The form loads: Manager ID = <code>M001</code>, Full Name = <code>Farah Aziz</code>, Username = <code>farahaziz</code>, Status = <code>ACTIVE</code>.</li>
+    <li>To update the display name: edit the <b>Full Name</b> field and click <b>Save Changes</b>.</li>
+    <li>Username, Status, and Password are read-only — those are set by Admin.</li>
+    <li>Click <b>Reload</b> to discard unsaved changes.</li>
+  </ol>
+
+  <h3 style="margin-top:20px;">Departments tab</h3>
+  <ol class="steps">
+    <li>Click the <b>Departments</b> tab.</li>
+    <li>The table shows all departments from departments.txt (currently DEP001–DEP003).</li>
+    <li><b>To add:</b> Fill in <em>Name</em> and <em>Specialty</em>, click <b>Add</b>. ID is auto-generated (DEP004 next).</li>
+    <li><b>To update:</b> Click a row → details load into the form → change name, specialty, or status → click <b>Update</b>.</li>
+    <li><b>To find:</b> Click <b>Find by ID</b>, type the ID (e.g. <code>DEP001</code>), and the row highlights in the table.</li>
+    <li><b>To retire a department:</b> Select it → change Status to <em>INACTIVE</em> → click Update. Records are never deleted.</li>
+  </ol>
+
+  <h3 style="margin-top:20px;">Doctor Schedules tab</h3>
+  <ol class="steps">
+    <li>Click the <b>Doctor Schedules</b> tab.</li>
+    <li>Table shows all 4 current slots for Dr. Aisha Rahman (D001).</li>
+    <li><b>To add a slot:</b> Type <em>Doctor ID</em> (<code>D001</code>), <em>Date</em> (yyyy-MM-dd), <em>Start</em> and <em>End</em> times (HH:mm), click <b>Add</b>. The system checks the doctor exists and that the time slot does not overlap an existing one.</li>
+    <li><b>To update a slot:</b> Click a row → edit date/times/status → click <b>Update</b>. If the slot is BOOKED, it cannot be edited (patient appointment protection).</li>
+    <li><b>To filter:</b> Click <b>Filter by Doctor</b> and enter a Doctor ID. Click <b>Show Available</b> to see only bookable slots. Click <b>Show All</b> to reset.</li>
+  </ol>
+
+  <h3 style="margin-top:20px;">Assessment Types tab</h3>
+  <ol class="steps">
+    <li>Click the <b>Assessment Types</b> tab.</li>
+    <li>Table shows all 3 current types (AT001–AT003).</li>
+    <li><b>To add:</b> Fill in <em>Name</em> and <em>Description</em>, click <b>Add</b>. ID auto-generated (AT004 next).</li>
+    <li><b>To update:</b> Click a row → edit name, description, or status → click <b>Update</b>.</li>
+    <li><b>To find:</b> Click <b>Find by ID</b>, type the ID.</li>
+  </ol>
+
+  <h3 style="margin-top:20px;">Reports tab</h3>
+  <ol class="steps">
+    <li>Click the <b>Reports</b> tab. Reports load automatically.</li>
+    <li>Inside Reports there are two sub-tabs: <b>Hospital Metrics</b> and <b>Revenue Summary</b>.</li>
+    <li><b>Hospital Metrics:</b> Shows department count, assessment type count, doctor count, patient count, and schedule slot breakdown. Missing modules (appointments, medical records, feedback) are listed as "Not available yet" — this is expected.</li>
+    <li><b>Revenue Summary:</b> Shows bill counts and totals from bills.txt. Currently: 1 bill, RM 150.00 billed, RM 0.00 collected (bill is UNPAID), RM 150.00 outstanding.</li>
+    <li>Click <b>Refresh Reports</b> to reload the latest data.</li>
+  </ol>
+
+  <h3 style="margin-top:20px;">Logout</h3>
+  <ol class="steps">
+    <li>Click the <b>Logout</b> button in the top-right of the dashboard.</li>
+    <li>A confirmation dialog appears: click <b>Yes</b>.</li>
+    <li>The dashboard closes and the Login screen returns.</li>
+  </ol>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  SECTION 7 — TEST DATA                                  -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">Section 7</span>
+    <h2>Test Login Credentials &amp; Existing Data</h2>
+  </div>
+
+  <h3>Login credentials (from users.txt)</h3>
+  <div class="cred-grid">
+    <div class="cred-card">
+      <div class="cred-role" style="color:var(--mine);">Medical Manager</div>
+      <div class="cred-line"><span class="cred-lbl">Username</span><span class="cred-val">farahaziz</span></div>
+      <div class="cred-line"><span class="cred-lbl">Password</span><span class="cred-val">manager123</span></div>
+      <div class="cred-line"><span class="cred-lbl">ID</span><span class="cred-val">M001</span></div>
+      <div class="cred-line"><span class="cred-lbl">Name</span><span class="cred-val">Farah Aziz</span></div>
+    </div>
+    <div class="cred-card">
+      <div class="cred-role" style="color:var(--team);">Admin (Teammate)</div>
+      <div class="cred-line"><span class="cred-lbl">Username</span><span class="cred-val">admin1</span></div>
+      <div class="cred-line"><span class="cred-lbl">Password</span><span class="cred-val">admin123</span></div>
+      <div class="cred-line"><span class="cred-lbl">ID</span><span class="cred-val">A001</span></div>
+    </div>
+    <div class="cred-card">
+      <div class="cred-role" style="color:var(--muted);">Doctor (Not yet built)</div>
+      <div class="cred-line"><span class="cred-lbl">Username</span><span class="cred-val">drrahman</span></div>
+      <div class="cred-line"><span class="cred-lbl">Password</span><span class="cred-val">doctor123</span></div>
+      <div class="cred-line"><span class="cred-lbl">ID</span><span class="cred-val">D001</span></div>
+    </div>
+    <div class="cred-card">
+      <div class="cred-role" style="color:var(--muted);">Patient (Not yet built)</div>
+      <div class="cred-line"><span class="cred-lbl">Username</span><span class="cred-val">amani</span></div>
+      <div class="cred-line"><span class="cred-lbl">Password</span><span class="cred-val">patient123</span></div>
+      <div class="cred-line"><span class="cred-lbl">ID</span><span class="cred-val">P001</span></div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:24px;">Existing department records (departments.txt)</h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>ID</th><th>Name</th><th>Specialty</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td><code>DEP001</code></td><td>Cardiology</td><td>Heart and cardiovascular care</td><td class="status-active">ACTIVE</td></tr>
+      <tr><td><code>DEP002</code></td><td>Neurology</td><td>Brain and nervous system care</td><td class="status-active">ACTIVE</td></tr>
+      <tr><td><code>DEP003</code></td><td>General Medicine</td><td>General consultation and primary care</td><td class="status-active">ACTIVE</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3 style="margin-top:20px;">Existing doctor schedule records (doctorSchedules.txt)</h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>ID</th><th>Doctor</th><th>Date</th><th>Start</th><th>End</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td><code>SCH001</code></td><td>D001</td><td>2026-09-10</td><td>09:00</td><td>09:30</td><td class="status-active">AVAILABLE</td></tr>
+      <tr><td><code>SCH002</code></td><td>D001</td><td>2026-09-10</td><td>09:30</td><td>10:00</td><td class="status-booked">BOOKED</td></tr>
+      <tr><td><code>SCH003</code></td><td>D001</td><td>2026-09-10</td><td>14:00</td><td>14:30</td><td class="status-active">AVAILABLE</td></tr>
+      <tr><td><code>SCH004</code></td><td>D001</td><td>2026-09-11</td><td>10:00</td><td>10:30</td><td class="status-active">AVAILABLE</td></tr>
+    </tbody>
+  </table></div>
+  <p style="font-size:0.83rem;color:var(--muted);">Doctor D001 = Dr. Aisha Rahman (drrahman). All slots belong to her. SCH002 is BOOKED — the system will block any attempt to edit it.</p>
+
+  <h3 style="margin-top:20px;">Existing assessment type records (assessmentTypes.txt)</h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>ID</th><th>Name</th><th>Description</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td><code>AT001</code></td><td>General Check-up</td><td>Routine physical examination and vitals check</td><td class="status-active">ACTIVE</td></tr>
+      <tr><td><code>AT002</code></td><td>Blood Pressure Screening</td><td>Measurement and review of blood pressure</td><td class="status-active">ACTIVE</td></tr>
+      <tr><td><code>AT003</code></td><td>Cardiac Assessment</td><td>Heart rate, rhythm and cardiovascular review</td><td class="status-active">ACTIVE</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3 style="margin-top:20px;">Existing billing record (bills.txt — Admin-owned, read-only for me)</h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>ID</th><th>Patient</th><th>Amount (RM)</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td><code>BILL001</code></td><td>P001 (Amani)</td><td style="font-variant-numeric:tabular-nums;">150.00</td><td class="status-unpaid">UNPAID</td></tr>
+    </tbody>
+  </table></div>
+  <p style="font-size:0.83rem;color:var(--muted);">Because BILL001 is UNPAID, my Revenue Summary shows: Billed = RM 150.00, Collected = RM 0.00, Outstanding = RM 150.00. This is correct and expected.</p>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  SECTION 8 — DEMO CHECKLIST                            -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">Section 8</span>
+    <h2>Demo Checklist — What to Show</h2>
+  </div>
+
+  <ul class="checklist">
+    <li><div class="check-box"></div><div class="check-label"><strong>Run the project</strong><div class="check-sub">Press F6 in NetBeans. The Login window should appear.</div></div></li>
+    <li><div class="check-box"></div><div class="check-label"><strong>Login as Medical Manager</strong><div class="check-sub">Username: <code>farahaziz</code> &nbsp;|&nbsp; Password: <code>manager123</code>. Dashboard with 5 tabs opens.</div></div></li>
+    <li><div class="check-box"></div><div class="check-label"><strong>My Profile tab</strong><div class="check-sub">Show M001, Farah Aziz, ACTIVE loaded from file. Optionally update the name and save, then reload to confirm it persisted.</div></div></li>
+    <li><div class="check-box"></div><div class="check-label"><strong>Departments tab</strong><div class="check-sub">Show the 3 existing departments. Add a new one (e.g. "Orthopaedics", "Bone and joint care"). Confirm DEP004 is generated. Optionally set it INACTIVE.</div></div></li>
+    <li><div class="check-box"></div><div class="check-label"><strong>Doctor Schedules tab</strong><div class="check-sub">Show all 4 slots. Point out SCH002 is BOOKED. Try clicking Update on SCH002 to show it is blocked. Add a new slot for D001 on a future date to show validation works.</div></div></li>
+    <li><div class="check-box"></div><div class="check-label"><strong>Assessment Types tab</strong><div class="check-sub">Show AT001–AT003. Add a new one (e.g. "Diabetes Screening"). Try adding a duplicate to show it is rejected.</div></div></li>
+    <li><div class="check-box"></div><div class="check-label"><strong>Reports → Hospital Metrics</strong><div class="check-sub">Show the metrics counts (departments, doctors, patients, slots). Explain the "Not available yet" section — those modules are being built by teammates.</div></div></li>
+    <li><div class="check-box"></div><div class="check-label"><strong>Reports → Revenue Summary</strong><div class="check-sub">Show RM 150.00 billed, RM 0.00 collected, RM 150.00 outstanding. Explain this reads from Admin's bills.txt — my module never writes billing data.</div></div></li>
+    <li><div class="check-box"></div><div class="check-label"><strong>Logout</strong><div class="check-sub">Click Logout → confirm dialog → Login screen returns. Demonstrate that logout works correctly.</div></div></li>
+    <li><div class="check-box"></div><div class="check-label"><strong>(Optional) Admin login to show integration</strong><div class="check-sub">Login as <code>admin1</code> / <code>admin123</code>. Show that Admin Dashboard opens — proving the integrated project works for both roles and my changes did not break the teammate's module.</div></div></li>
+  </ul>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  SECTION 9 — NOTES & LIMITATIONS                        -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">Section 9</span>
+    <h2>Important Notes &amp; Limitations</h2>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div class="callout-body">
+      <b>Three data sources are missing — this is intentional and expected</b>
+      The Hospital Metrics report lists these as "Not available yet" rather than showing zeroes:
+      <ul style="margin-top:6px;padding-left:18px;line-height:1.8;">
+        <li><strong>appointments.txt</strong> — Patient module (not yet built by teammate)</li>
+        <li><strong>medicalRecords.txt</strong> — Doctor module (not yet built by teammate)</li>
+        <li><strong>feedback.txt</strong> — Patient module (not yet built by teammate)</li>
+      </ul>
+      When those modules are added, my report will automatically pick up the data — no changes to my code needed.
+    </div>
+  </div>
+
+  <div class="callout callout-note">
+    <div class="callout-icon">💡</div>
+    <div class="callout-body">
+      <b>Revenue shows RM 0.00 collected — correct behaviour</b>
+      The single bill (BILL001) is UNPAID. My Revenue Summary correctly shows RM 150.00 billed and RM 0.00 collected. The system only counts a bill as collected when it is marked PAID. This is not a bug.
+    </div>
+  </div>
+
+  <div class="callout callout-note">
+    <div class="callout-icon">💡</div>
+    <div class="callout-body">
+      <b>SCH002 is permanently BOOKED — cannot be edited</b>
+      My DoctorSchedulePanel blocks editing of BOOKED slots because a patient appointment is tied to that time slot. If you try to click Update on SCH002, the panel shows a warning. This is an intentional feature, not a bug. You can demonstrate it during the viva.
+    </div>
+  </div>
+
+  <div class="callout callout-note">
+    <div class="callout-icon">💡</div>
+    <div class="callout-body">
+      <b>Only one doctor in the system (D001 — Dr. Aisha Rahman)</b>
+      All 4 schedule slots are for D001. If you try to add a schedule for D999 or any other ID that does not exist in doctors.txt, the service rejects it with an error message. Doctor accounts are created by Admin Staff, not by the Medical Manager.
+    </div>
+  </div>
+
+  <div class="callout callout-note">
+    <div class="callout-icon">💡</div>
+    <div class="callout-body">
+      <b>Doctor / Department name consistency is free-text</b>
+      The Doctor record stores <code>department = "Cardiology"</code> as a free text string — it is not a foreign key to my DEP001. This is a known group design gap. The names happen to match today; there is nothing enforcing it automatically.
+    </div>
+  </div>
+
+  <div class="callout callout-note">
+    <div class="callout-icon">💡</div>
+    <div class="callout-body">
+      <b>Profile edit: only the display name is editable</b>
+      The username, password, and account status are created by Admin Staff and stored in users.txt. My ProfilePanel only edits the name in medicalManagers.txt. It never touches users.txt. This is by design.
+    </div>
+  </div>
+
+  <div class="callout callout-note">
+    <div class="callout-icon">💡</div>
+    <div class="callout-body">
+      <b>Doctor and Patient dashboards show an info message only</b>
+      Logging in as drrahman or amani shows a dialog saying the dashboard is implemented by another team member's module. This is expected — those modules are not yet complete.
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  SECTION 10 — QUICK REFERENCE                           -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<hr class="page-break">
+
+<div class="section" style="border-top:4px solid var(--primary);">
+  <div class="section-header">
+    <span class="section-num">Section 10</span>
+    <h2>Quick Reference — One Page</h2>
+  </div>
+
+  <div class="qr-grid">
+
+    <div class="qr-card" style="border-left:3px solid var(--mine);">
+      <h4 style="color:var(--mine);">My Packages &amp; Files</h4>
+      <ul class="qr-list">
+        <li><span class="qr-dot"></span><code>gui.manager</code> — 6 GUI files</li>
+        <li><span class="qr-dot"></span><code>model.manager</code> — 5 model files</li>
+        <li><span class="qr-dot"></span><code>service.manager</code> — 4 service files</li>
+        <li><span class="qr-dot"></span><code>data/departments.txt</code></li>
+        <li><span class="qr-dot"></span><code>data/doctorSchedules.txt</code></li>
+        <li><span class="qr-dot"></span><code>data/assessmentTypes.txt</code></li>
+      </ul>
+    </div>
+
+    <div class="qr-card" style="border-left:3px solid var(--shared);">
+      <h4 style="color:var(--shared);">Shared Files I Use</h4>
+      <ul class="qr-list">
+        <li><span class="qr-dot" style="background:var(--shared)"></span><code>FileManager</code>, <code>IDGenerator</code>, <code>ValidationUtil</code></li>
+        <li><span class="qr-dot" style="background:var(--shared)"></span><code>MedicalManagerService</code> → profile</li>
+        <li><span class="qr-dot" style="background:var(--shared)"></span><code>DoctorService</code> → schedule validation</li>
+        <li><span class="qr-dot" style="background:var(--shared)"></span><code>BillService</code> → revenue report</li>
+        <li><span class="qr-dot" style="background:var(--shared)"></span><code>UserManagementService</code> → patient count</li>
+        <li><span class="qr-dot" style="background:var(--shared)"></span><code>User</code>, <code>MedicalManager</code>, <code>Doctor</code>, <code>Bill</code></li>
+      </ul>
+    </div>
+
+    <div class="qr-card">
+      <h4>How to Run</h4>
+      <ul class="qr-list">
+        <li><span class="qr-dot"></span>Open HMS project in NetBeans</li>
+        <li><span class="qr-dot"></span>Press <strong>F6</strong> to run</li>
+        <li><span class="qr-dot"></span>Main class: <code>main.Main</code></li>
+        <li><span class="qr-dot"></span>JAR: <code>dist/HMS.jar</code></li>
+        <li><span class="qr-dot"></span>Data folder: <code>data/</code> (project root)</li>
+      </ul>
+    </div>
+
+    <div class="qr-card">
+      <h4>Login Credentials</h4>
+      <ul class="qr-list">
+        <li><span class="qr-dot" style="background:var(--mine)"></span><strong>Manager:</strong> <code>farahaziz</code> / <code>manager123</code></li>
+        <li><span class="qr-dot" style="background:var(--team)"></span><strong>Admin:</strong> <code>admin1</code> / <code>admin123</code></li>
+        <li><span class="qr-dot" style="background:var(--muted)"></span><strong>Doctor:</strong> <code>drrahman</code> / <code>doctor123</code></li>
+        <li><span class="qr-dot" style="background:var(--muted)"></span><strong>Patient:</strong> <code>amani</code> / <code>patient123</code></li>
+      </ul>
+    </div>
+
+    <div class="qr-card">
+      <h4>My Main Features</h4>
+      <ul class="qr-list">
+        <li><span class="qr-dot"></span>Profile — view &amp; update display name</li>
+        <li><span class="qr-dot"></span>Departments — full create / update</li>
+        <li><span class="qr-dot"></span>Doctor Schedules — create / update / filter</li>
+        <li><span class="qr-dot"></span>Assessment Types — full create / update</li>
+        <li><span class="qr-dot"></span>Reports — Hospital Metrics (read-only)</li>
+        <li><span class="qr-dot"></span>Reports — Revenue Summary (read-only)</li>
+      </ul>
+    </div>
+
+    <div class="qr-card" style="border-left:3px solid var(--primary);">
+      <h4>Suggested Demo Order</h4>
+      <ul class="qr-list">
+        <li><span class="qr-dot"></span>1. Login as <code>farahaziz</code></li>
+        <li><span class="qr-dot"></span>2. My Profile — show name, save</li>
+        <li><span class="qr-dot"></span>3. Departments — show + add one</li>
+        <li><span class="qr-dot"></span>4. Doctor Schedules — show BOOKED block</li>
+        <li><span class="qr-dot"></span>5. Assessment Types — show + add one</li>
+        <li><span class="qr-dot"></span>6. Reports — Metrics + Revenue</li>
+        <li><span class="qr-dot"></span>7. Logout</li>
+        <li><span class="qr-dot"></span>8. (Optional) Admin login — show integration</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- Key facts strip -->
+  <div style="margin-top:20px;background:var(--primary-l);border-radius:8px;padding:14px 18px;font-size:0.82rem;display:flex;flex-wrap:wrap;gap:16px;border:1px solid var(--border);">
+    <div><strong style="font-family:'Plus Jakarta Sans',sans-serif;">Total my files:</strong> 15 Java + 3 data</div>
+    <div><strong style="font-family:'Plus Jakarta Sans',sans-serif;">Total project files:</strong> 46 Java + 11 data</div>
+    <div><strong style="font-family:'Plus Jakarta Sans',sans-serif;">Build:</strong> BUILD SUCCESSFUL · 56 class files</div>
+    <div><strong style="font-family:'Plus Jakarta Sans',sans-serif;">Missing data files:</strong> appointments.txt, medicalRecords.txt, feedback.txt</div>
+    <div><strong style="font-family:'Plus Jakarta Sans',sans-serif;">Revenue:</strong> 1 bill · RM 150.00 billed · RM 0.00 collected</div>
+  </div>
+</div>
+
+</body></html>
